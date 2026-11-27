@@ -1,6 +1,6 @@
 # CHRONO — cửa hàng đồng hồ & không gian thực hành QA
 
-Web HTML/CSS/JavaScript thuần, dữ liệu lưu localStorage. Bản 1.3 tập trung giao diện và kiểm thử; không cần backend/MySQL. Mã do AI hỗ trợ phát triển theo yêu cầu người dùng; xem [nguồn và minh chứng](docs/AI-PROVENANCE.md).
+Web HTML/CSS/JavaScript thuần, dữ liệu lưu localStorage. Bản 1.3 tập trung giao diện và kiểm thử; không cần backend/MySQL. Mã do AI hỗ trợ phát triển theo yêu cầu người dùng; xem [nguồn và minh chứng](docs/ai/AI-PROVENANCE.md).
 
 ## Chạy trên máy
 
@@ -16,6 +16,44 @@ Mở [trang QA](http://127.0.0.1:5517/qa.html), [phòng thực hành](http://127
 |---|---|---|
 | Admin | admin | Admin@123 |
 | Nhân viên | staff | Staff@123 |
+
+## Cấu trúc thư mục
+
+Các trang HTML nằm ở gốc để giữ nguyên địa chỉ (`/home.html`, `/index.html`...); mã, tài liệu và kiểm thử gom theo vai trò.
+
+```
+.
+├── *.html                 20 trang vào: 13 trang khách, quản lý (index), QA, phòng thực hành, hồ sơ 8 câu hỏi
+├── css/
+│   ├── admin/             styles.css (giao diện quản lý, QA dùng chung)
+│   ├── storefront/        storefront.css, home.css (trang khách)
+│   └── qa/                qa.css, lab.css, qa-portfolio.css
+├── js/
+│   ├── core/              store.js (quy tắc nghiệp vụ, dùng ở mọi nơi)
+│   ├── admin/             app.js, icons.js, demo-data.js
+│   ├── storefront/        storefront.js, home.js
+│   └── qa/                qa.js, qa-runner.js, qa-cases.js, lab.js
+├── assets/                font và ảnh minh họa
+├── docs/
+│   ├── product/           PRODUCT, DESIGN, ASSETS
+│   ├── planning/          kế hoạch, thiết kế, loại kiểm thử, checklist
+│   ├── test-cases/        CSV: 90 ca thủ công, 24 ca khách, 27 ca giao diện
+│   ├── tools/             hướng dẫn Katalon, JMeter, Selenium IDE, tự động hóa, test bằng AI
+│   ├── ai/                nguồn AI và hồ sơ bàn giao
+│   ├── reports/           tổng kết, lỗi, xác minh, báo cáo đồ án (.docx)
+│   ├── guides/            hướng dẫn sử dụng, chạy local, kịch bản bảo vệ
+│   └── evidence/          ảnh, lịch sử thực thi và báo cáo theo từng đợt
+├── tests/
+│   ├── unit/              test Node (nghiệp vụ, dữ liệu demo, trang khách)
+│   ├── e2e/               Playwright
+│   ├── katalon/           22 script Groovy (KT-001…022)
+│   ├── jmeter/            plan hiệu năng (.jmx)
+│   └── selenium-ide/      aurel-ui.side
+├── scripts/               máy chủ test, bộ sinh plan JMeter/Selenium IDE, kiểm tra cú pháp và liên kết
+└── skills/                skill QA mẫu
+```
+
+Kiểm tra nhanh sau khi sửa: `npm run check` (cú pháp mọi tệp JS), `npm run check:links` (liên kết HTML/CSS/Markdown), `npm test` (Node), `npm run test:e2e` (Playwright).
 
 ## Giao diện và dữ liệu
 
@@ -39,8 +77,8 @@ Nút **Demo Fail mô phỏng** cố ý tạo một lỗi ở nhóm cơ bản; ch
 
 ## Katalon & JMeter
 
-- [12 script Katalon](testing/katalon/): tạo test case trong Studio rồi dán vào Script View. Đọc [hướng dẫn và ma trận](docs/KATALON.md). **Chưa chạy Katalon**, giữ Not Run đến khi có report thật.
-- [JMeter plan](testing/jmeter/chrono-static.jmx): 8 HTTP request, mỗi request có assertion mã 200 và nội dung, cấu hình threads/loops/ramp/host/port. Đọc [hướng dẫn](docs/JMETER.md). **Chưa chạy JMeter**. Plan chỉ đo HTTP tài nguyên, không chạy JS/localStorage hoặc nghiệp vụ bán hàng.
+- [12 script Katalon](tests/katalon/): tạo test case trong Studio rồi dán vào Script View. Đọc [hướng dẫn và ma trận](docs/tools/KATALON.md). **Chưa chạy Katalon**, giữ Not Run đến khi có report thật.
+- [JMeter plan](tests/jmeter/chrono-static.jmx): 8 HTTP request, mỗi request có assertion mã 200 và nội dung, cấu hình threads/loops/ramp/host/port. Đọc [hướng dẫn](docs/tools/JMETER.md). **Chưa chạy JMeter**. Plan chỉ đo HTTP tài nguyên, không chạy JS/localStorage hoặc nghiệp vụ bán hàng.
 
 ## Chạy bộ kiểm thử của dự án
 
@@ -56,13 +94,13 @@ npm run report
 
 Nếu thiếu trình duyệt: npx playwright install chromium. Suite tự mở server cổng 5517; dừng npm start trước khi chạy suite nếu đang dùng cùng cổng. Mỗi test có browser context riêng; không thay dữ liệu trình duyệt bạn đang dùng. Thời gian suite không phải số đo hiệu năng web.
 
-Báo cáo trong playwright-report, ảnh/trace khi lỗi trong test-results. Xem [tổng kết thực thi](docs/TEST-SUMMARY.md) để phân biệt kết quả hiện tại, lịch sử và phần chưa chạy.
+Báo cáo trong playwright-report, ảnh/trace khi lỗi trong test-results. Xem [tổng kết thực thi](docs/reports/TEST-SUMMARY.md) để phân biệt kết quả hiện tại, lịch sử và phần chưa chạy.
 
 ## Hồ sơ bảo vệ
 
-- [Hồ sơ 8 câu hỏi](qa-portfolio.html), [hướng dẫn local](docs/LOCAL-DEMO.md), [hướng dẫn sử dụng ngắn](docs/HUONG-DAN-SU-DUNG.md), [bàn giao Claude](docs/CLAUDE-HANDOFF.md), [lịch sử thực thi 24 ca khách](docs/evidence/manual-claude-2026-11-26/LICH-SU-KIEM-THU.md), [lịch sử 27 ca giao diện/truy cập/bảo mật](docs/evidence/ui-claude-2026-11-26/LICH-SU-KIEM-THU-GIAO-DIEN.md), [các loại kiểm thử đã làm](docs/LOAI-KIEM-THU.md), [Selenium IDE (không cần tài khoản)](docs/SELENIUM-IDE.md).
-- [Kế hoạch](docs/TEST-PLAN.md), [test design](docs/TEST-DESIGN.md), [90 ca CSV](docs/TEST-CASES.csv).
-- [AI hỗ trợ tester](docs/AI-TESTING.md), [skill mẫu](skills/watch-qa/SKILL.md).
-- [Kịch bản bảo vệ](docs/DEFENSE.md), [bug report](docs/BUG-REPORTS.md), [bản thảo báo cáo](docs/REPORT.md).
+- [Hồ sơ 8 câu hỏi](qa-portfolio.html), [hướng dẫn local](docs/guides/LOCAL-DEMO.md), [hướng dẫn sử dụng ngắn](docs/guides/HUONG-DAN-SU-DUNG.md), [bàn giao Claude](docs/ai/CLAUDE-HANDOFF.md), [lịch sử thực thi 24 ca khách](docs/evidence/manual-claude-2026-11-26/LICH-SU-KIEM-THU.md), [lịch sử 27 ca giao diện/truy cập/bảo mật](docs/evidence/ui-claude-2026-11-26/LICH-SU-KIEM-THU-GIAO-DIEN.md), [các loại kiểm thử đã làm](docs/planning/LOAI-KIEM-THU.md), [Selenium IDE (không cần tài khoản)](docs/tools/SELENIUM-IDE.md).
+- [Kế hoạch](docs/planning/TEST-PLAN.md), [test design](docs/planning/TEST-DESIGN.md), [90 ca CSV](docs/test-cases/TEST-CASES.csv).
+- [AI hỗ trợ tester](docs/tools/AI-TESTING.md), [skill mẫu](skills/watch-qa/SKILL.md).
+- [Kịch bản bảo vệ](docs/guides/DEFENSE.md), [bug report](docs/reports/BUG-REPORTS.md), [bản thảo báo cáo](docs/reports/REPORT.md).
 
 Các tài liệu và file Word cũ là bản thảo, cần cập nhật thông tin sinh viên, ảnh hội thoại AI và kết quả Katalon/JMeter thật trước khi nộp. Không khẳng định số ca hoặc thời lượng demo là rubric giảng viên nếu chưa được cung cấp.

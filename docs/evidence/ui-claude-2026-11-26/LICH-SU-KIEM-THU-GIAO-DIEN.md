@@ -1,6 +1,6 @@
 # Lịch sử kiểm thử giao diện, truy cập, tương thích, bảo mật cơ bản và khả năng sử dụng (UI-001…027)
 
-**Người thực thi:** Claude (AI) điều khiển trình duyệt tự động. **Không phải thao tác tay của sinh viên.** Mô tả ca: [TEST-CASES-UI.csv](../../TEST-CASES-UI.csv). Mỗi lần chạy được cộng dồn; Fail thật được giữ nguyên trong lịch sử, không xóa khi đã sửa.
+**Người thực thi:** Claude (AI) điều khiển trình duyệt tự động. **Không phải thao tác tay của sinh viên.** Mô tả ca: [TEST-CASES-UI.csv](../../test-cases/TEST-CASES-UI.csv). Mỗi lần chạy được cộng dồn; Fail thật được giữ nguyên trong lịch sử, không xóa khi đã sửa.
 
 ## Các lần chạy
 
@@ -10,8 +10,9 @@
 | R02 | 12:46:57 26/11/26 | 26 | 1 | 0 | Chrome 158.0.8127.88 |
 | R03 | 12:48:20 26/11/26 | 27 | 0 | 0 | Chrome 158.0.8127.88 |
 | R04 | 12:49:33 26/11/26 | 27 | 0 | 0 | Chrome 158.0.8127.88 |
+| R05 | 10:24:04 27/11/26 | 27 | 0 | 0 | Chrome 158.0.8127.88 |
 
-## Chi tiết lần mới nhất (R04)
+## Chi tiết lần mới nhất (R05)
 
 | Ca | Loại | Mục tiêu | Trạng thái | Kết quả thực tế | Bằng chứng |
 |---|---|---|---|---|---|
@@ -37,7 +38,7 @@
 | UI-020 | Tương thích | Luồng khách đặt hàng → quản lý thấy đơn chạy trên Chrome và Edge | **Pass** | ✔ Chrome 158.0.8127.88: đơn xuất hiện trong quản lý ở trạng thái Nháp \| ✔ Edge 158.0.4370.33: đơn xuất hiện trong quản lý ở trạng thái Nháp \| ✔ Cả Chrome và Edge cho cùng kết quả | [ảnh](anh/UI-020.png) |
 | UI-021 | Bảo mật cơ bản | Chưa đăng nhập không xem được dữ liệu quản lý | **Pass** | ✔ Chỉ hiện form đăng nhập, không có menu Đơn hàng \| ✔ Không lộ mã đơn, doanh thu hay tồn kho | [ảnh](anh/UI-021.png) |
 | UI-022 | Bảo mật cơ bản | Mật khẩu khách không lưu dạng rõ | **Pass** | ✔ Mật khẩu gốc không xuất hiện trong dữ liệu lưu \| ✔ Có trường passwordHash (băm mô phỏng) | [ảnh](anh/UI-022.png) |
-| UI-023 | Bảo mật cơ bản | Máy chủ không phục vụ file ngoài danh sách (path traversal) | **Pass** | ✔ /package.json → 404 \| ✔ /package-lock.json → 404 \| ✔ /tests/store.test.js → 404 \| ✔ /scripts/test-server.cjs → 404 \| ✔ /node_modules/.bin/playwright → 404 \| ✔ /.gitignore → 404 \| ✔ /../package.json → 404 \| ✔ /%2e%2e/package.json → 404 \| ✔ /docs/../package.json → 404 \| ✔ /assets/../package.json → 404 \| ✔ /docs/%2e%2e/%2e%2e/Windows/win.ini → 404 \| ✔ 11 đường dẫn nhạy cảm/traversal đều không trả 200 | [ảnh](anh/UI-023.png) |
+| UI-023 | Bảo mật cơ bản | Máy chủ không phục vụ file ngoài danh sách (path traversal) | **Pass** | ✔ /package.json → 404 \| ✔ /package-lock.json → 404 \| ✔ /tests/unit/store.test.js → 404 \| ✔ /tests/e2e/chrono.spec.js → 404 \| ✔ /playwright.config.js → 404 \| ✔ /scripts/test-server.cjs → 404 \| ✔ /node_modules/.bin/playwright → 404 \| ✔ /.gitignore → 404 \| ✔ /../package.json → 404 \| ✔ /%2e%2e/package.json → 404 \| ✔ /docs/../package.json → 404 \| ✔ /assets/../package.json → 404 \| ✔ /docs/%2e%2e/%2e%2e/Windows/win.ini → 404 \| ✔ 13 đường dẫn nhạy cảm/traversal đều không trả 200 | [ảnh](anh/UI-023.png) |
 | UI-024 | Bảo mật cơ bản | Phiên khách hết hạn thì bị đăng xuất | **Pass** | ✔ Phiên hết hạn → hiện trạng thái chưa đăng nhập \| ✔ Phiên hết hạn bị xóa khỏi bộ nhớ | [ảnh](anh/UI-024.png) |
 | UI-025 | Khả năng sử dụng | Thông báo lỗi bằng tiếng Việt, dễ hiểu, không lộ lỗi kỹ thuật | **Pass** | ✔ 9 thông báo lỗi đều có tiếng Việt và không lộ lỗi kỹ thuật | [ảnh](anh/UI-025.png) |
 | UI-026 | Khả năng sử dụng | Số tiền VND hiển thị nhất quán (dấu chấm nghìn + ₫) | **Pass** | ✔ 22 số tiền trên 5 trang đều theo mẫu 12.500.000 ₫ | [ảnh](anh/UI-026.png) |
@@ -45,35 +46,35 @@
 
 ## Diễn biến từng ca qua các lần chạy
 
-| Ca | R01 | R02 | R03 | R04 |
-|---|---|---|---|---|
-| UI-001 | Pass | Pass | Pass | Pass |
-| UI-002 | Fail* | Pass | Pass | Pass |
-| UI-003 | Pass | Pass | Pass | Pass |
-| UI-004 | Pass | Fail* | Pass | Pass |
-| UI-005 | Pass | Pass | Pass | Pass |
-| UI-006 | Pass | Pass | Pass | Pass |
-| UI-007 | Pass | Pass | Pass | Pass |
-| UI-008 | Pass | Pass | Pass | Pass |
-| UI-009 | Fail* | Pass | Pass | Pass |
-| UI-010 | Pass | Pass | Pass | Pass |
-| UI-011 | Pass | Pass | Pass | Pass |
-| UI-012 | Pass | Pass | Pass | Pass |
-| UI-013 | Fail | Pass | Pass | Pass |
-| UI-014 | Pass | Pass | Pass | Pass |
-| UI-015 | Pass | Pass | Pass | Pass |
-| UI-016 | Fail* | Pass | Pass | Pass |
-| UI-017 | Pass | Pass | Pass | Pass |
-| UI-018 | Pass | Pass | Pass | Pass |
-| UI-019 | Pass | Pass | Pass | Pass |
-| UI-020 | Pass | Pass | Pass | Pass |
-| UI-021 | Pass | Pass | Pass | Pass |
-| UI-022 | Pass | Pass | Pass | Pass |
-| UI-023 | Pass | Pass | Pass | Pass |
-| UI-024 | Pass | Pass | Pass | Pass |
-| UI-025 | Pass | Pass | Pass | Pass |
-| UI-026 | Pass | Pass | Pass | Pass |
-| UI-027 | Pass | Pass | Pass | Pass |
+| Ca | R01 | R02 | R03 | R04 | R05 |
+|---|---|---|---|---|---|
+| UI-001 | Pass | Pass | Pass | Pass | Pass |
+| UI-002 | Fail* | Pass | Pass | Pass | Pass |
+| UI-003 | Pass | Pass | Pass | Pass | Pass |
+| UI-004 | Pass | Fail* | Pass | Pass | Pass |
+| UI-005 | Pass | Pass | Pass | Pass | Pass |
+| UI-006 | Pass | Pass | Pass | Pass | Pass |
+| UI-007 | Pass | Pass | Pass | Pass | Pass |
+| UI-008 | Pass | Pass | Pass | Pass | Pass |
+| UI-009 | Fail* | Pass | Pass | Pass | Pass |
+| UI-010 | Pass | Pass | Pass | Pass | Pass |
+| UI-011 | Pass | Pass | Pass | Pass | Pass |
+| UI-012 | Pass | Pass | Pass | Pass | Pass |
+| UI-013 | Fail | Pass | Pass | Pass | Pass |
+| UI-014 | Pass | Pass | Pass | Pass | Pass |
+| UI-015 | Pass | Pass | Pass | Pass | Pass |
+| UI-016 | Fail* | Pass | Pass | Pass | Pass |
+| UI-017 | Pass | Pass | Pass | Pass | Pass |
+| UI-018 | Pass | Pass | Pass | Pass | Pass |
+| UI-019 | Pass | Pass | Pass | Pass | Pass |
+| UI-020 | Pass | Pass | Pass | Pass | Pass |
+| UI-021 | Pass | Pass | Pass | Pass | Pass |
+| UI-022 | Pass | Pass | Pass | Pass | Pass |
+| UI-023 | Pass | Pass | Pass | Pass | Pass |
+| UI-024 | Pass | Pass | Pass | Pass | Pass |
+| UI-025 | Pass | Pass | Pass | Pass | Pass |
+| UI-026 | Pass | Pass | Pass | Pass | Pass |
+| UI-027 | Pass | Pass | Pass | Pass | Pass |
 
 \* Fail do lỗi của chính bài test, không phải lỗi website (nguyên nhân trong history.json). Riêng UI-013 ở R01 là **lỗi thật** của website (trang không có thẻ h1 ở trạng thái chưa đăng nhập / đơn không hợp lệ) và đã được sửa.
 

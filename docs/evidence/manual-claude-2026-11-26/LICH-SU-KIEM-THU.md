@@ -1,6 +1,6 @@
 # Lịch sử thực thi ca kiểm thử khách hàng (CUS-001…024)
 
-**Người thực thi:** Claude (AI) điều khiển Chrome tự động, thao tác theo đúng các bước trong [TEST-CASES-CUSTOMER.csv](../../TEST-CASES-CUSTOMER.csv). **Không phải thao tác tay của sinh viên** — sinh viên nên tự chạy lại các ca khi cần ghi vào sổ QA của mình (`qa.html`).
+**Người thực thi:** Claude (AI) điều khiển Chrome tự động, thao tác theo đúng các bước trong [TEST-CASES-CUSTOMER.csv](../../test-cases/TEST-CASES-CUSTOMER.csv). **Không phải thao tác tay của sinh viên** — sinh viên nên tự chạy lại các ca khi cần ghi vào sổ QA của mình (`qa.html`).
 
 ## Các lần chạy
 
@@ -10,8 +10,9 @@
 | R02 | 10:27:13 26/11/26 | 24 | 0 | Chrome 158.0.8127.88 | win32 10.0.26300 |
 | R03 | 10:29:29 26/11/26 | 24 | 0 | Chrome 158.0.8127.88 | win32 10.0.26300 |
 | R04 | 12:50:12 26/11/26 | 24 | 0 | Chrome 158.0.8127.88 | win32 10.0.26300 |
+| R05 | 10:24:46 27/11/26 | 24 | 0 | Chrome 158.0.8127.88 | win32 10.0.26300 |
 
-## Chi tiết lần mới nhất (R04)
+## Chi tiết lần mới nhất (R05)
 
 | Ca | Chức năng | Mục tiêu | Trạng thái | Kết quả thực tế | Bằng chứng |
 |---|---|---|---|---|---|
@@ -42,32 +43,32 @@
 
 ## Diễn biến theo từng ca qua các lần chạy
 
-| Ca | R01 | R02 | R03 | R04 |
-|---|---|---|---|---|
-| CUS-001 | Pass | Pass | Pass | Pass |
-| CUS-002 | Pass | Pass | Pass | Pass |
-| CUS-003 | Pass | Pass | Pass | Pass |
-| CUS-004 | Pass | Pass | Pass | Pass |
-| CUS-005 | Pass | Pass | Pass | Pass |
-| CUS-006 | Pass | Pass | Pass | Pass |
-| CUS-007 | Pass | Pass | Pass | Pass |
-| CUS-008 | Fail* | Pass | Pass | Pass |
-| CUS-009 | Pass | Pass | Pass | Pass |
-| CUS-010 | Pass | Pass | Pass | Pass |
-| CUS-011 | Pass | Pass | Pass | Pass |
-| CUS-012 | Pass | Pass | Pass | Pass |
-| CUS-013 | Pass | Pass | Pass | Pass |
-| CUS-014 | Pass | Pass | Pass | Pass |
-| CUS-015 | Pass | Pass | Pass | Pass |
-| CUS-016 | Pass | Pass | Pass | Pass |
-| CUS-017 | Fail* | Pass | Pass | Pass |
-| CUS-018 | Fail* | Pass | Pass | Pass |
-| CUS-019 | Pass | Pass | Pass | Pass |
-| CUS-020 | Pass | Pass | Pass | Pass |
-| CUS-021 | Pass | Pass | Pass | Pass |
-| CUS-022 | Pass | Pass | Pass | Pass |
-| CUS-023 | Pass | Pass | Pass | Pass |
-| CUS-024 | Pass | Pass | Pass | Pass |
+| Ca | R01 | R02 | R03 | R04 | R05 |
+|---|---|---|---|---|---|
+| CUS-001 | Pass | Pass | Pass | Pass | Pass |
+| CUS-002 | Pass | Pass | Pass | Pass | Pass |
+| CUS-003 | Pass | Pass | Pass | Pass | Pass |
+| CUS-004 | Pass | Pass | Pass | Pass | Pass |
+| CUS-005 | Pass | Pass | Pass | Pass | Pass |
+| CUS-006 | Pass | Pass | Pass | Pass | Pass |
+| CUS-007 | Pass | Pass | Pass | Pass | Pass |
+| CUS-008 | Fail* | Pass | Pass | Pass | Pass |
+| CUS-009 | Pass | Pass | Pass | Pass | Pass |
+| CUS-010 | Pass | Pass | Pass | Pass | Pass |
+| CUS-011 | Pass | Pass | Pass | Pass | Pass |
+| CUS-012 | Pass | Pass | Pass | Pass | Pass |
+| CUS-013 | Pass | Pass | Pass | Pass | Pass |
+| CUS-014 | Pass | Pass | Pass | Pass | Pass |
+| CUS-015 | Pass | Pass | Pass | Pass | Pass |
+| CUS-016 | Pass | Pass | Pass | Pass | Pass |
+| CUS-017 | Fail* | Pass | Pass | Pass | Pass |
+| CUS-018 | Fail* | Pass | Pass | Pass | Pass |
+| CUS-019 | Pass | Pass | Pass | Pass | Pass |
+| CUS-020 | Pass | Pass | Pass | Pass | Pass |
+| CUS-021 | Pass | Pass | Pass | Pass | Pass |
+| CUS-022 | Pass | Pass | Pass | Pass | Pass |
+| CUS-023 | Pass | Pass | Pass | Pass | Pass |
+| CUS-024 | Pass | Pass | Pass | Pass | Pass |
 
 \* Fail do lỗi bộ chạy (script), không phải lỗi sản phẩm: ở R01, ba ca CUS-008/017/018 hỏng vì bộ chạy đọc dữ liệu cửa hàng khi chưa được ghi và đăng nhập admin lặp. Đã sửa bộ chạy rồi chạy lại.
 
