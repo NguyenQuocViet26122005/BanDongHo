@@ -1,4 +1,4 @@
-/* Sinh testing/jmeter/aurel-performance.jmx theo cấu trúc mẫu "MilkShop - Kiểm thử hiệu năng":
+/* Sinh tests/jmeter/aurel-performance.jmx theo cấu trúc mẫu "MilkShop - Kiểm thử hiệu năng":
  * mỗi chức năng một Thread Group đánh số, request đặt tên PT_<MÃ>_NN, kèm
  * "Phản hồi không quá 3 giây", "HTTP 200", "Báo cáo tổng hợp", "Thống kê hiệu năng", "Kết quả chi tiết".
  * AUREL không có backend/JWT nên chỉ đo HTTP tài nguyên tĩnh (không chạy JavaScript/localStorage).
@@ -8,22 +8,22 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { spawn } = require('node:child_process');
 
-const dir = path.resolve(__dirname, '../testing/jmeter');
+const dir = path.resolve(__dirname, '../tests/jmeter');
 fs.mkdirSync(dir, { recursive: true });
 const xml = s => String(s).replace(/[<>&"']/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&apos;' }[c]));
 
 /* [mã, tên nhóm, [[tên request, đường dẫn, chuỗi nội dung mong đợi | null]]] */
 const GROUPS = [
   ['DC', 'Tài nguyên dùng chung', [
-    ['Stylesheet trang khách', '/storefront.css', '--jade'],
-    ['Module giao diện khách', '/storefront.js', 'AurelStorefront'],
-    ['Lớp nghiệp vụ cửa hàng', '/store.js', 'checkoutOrder'],
-    ['Bộ icon SVG', '/icons.js', null]
+    ['Stylesheet trang khách', '/css/storefront/storefront.css', '--jade'],
+    ['Module giao diện khách', '/js/storefront/storefront.js', 'AurelStorefront'],
+    ['Lớp nghiệp vụ cửa hàng', '/js/core/store.js', 'checkoutOrder'],
+    ['Bộ icon SVG', '/js/admin/icons.js', null]
   ]],
   ['TC', 'Trang chủ và tìm kiếm', [
     ['Tải trang chủ', '/home.html', 'san-pham'],
-    ['Stylesheet trang chủ', '/home.css', null],
-    ['Script trang chủ', '/home.js', 'category-list'],
+    ['Stylesheet trang chủ', '/css/storefront/home.css', null],
+    ['Script trang chủ', '/js/storefront/home.js', 'category-list'],
     ['Tìm kiếm theo từ khóa (HTML)', '/home.html?q=seiko', 'san-pham']
   ]],
   ['SP', 'Chi tiết sản phẩm', [
@@ -51,17 +51,17 @@ const GROUPS = [
   ]],
   ['QL', 'Quản lý cửa hàng', [
     ['Tải trang quản lý', '/index.html', 'AUREL'],
-    ['Script quản lý', '/app.js', 'demoDataForm'],
-    ['Stylesheet quản lý', '/styles.css', '--accent'],
-    ['Dữ liệu demo', '/demo-data.js', null]
+    ['Script quản lý', '/js/admin/app.js', 'demoDataForm'],
+    ['Stylesheet quản lý', '/css/admin/styles.css', '--accent'],
+    ['Dữ liệu demo', '/js/admin/demo-data.js', null]
   ]],
   ['QA', 'Theo dõi kiểm thử QA', [
     ['Tải trang QA', '/qa.html', 'case-list'],
-    ['Script QA', '/qa.js', null],
-    ['Bộ chạy 24 ca nghiệp vụ', '/qa-runner.js', null],
-    ['Danh sách test case JS', '/qa-cases.js', null],
-    ['CSV 90 test case', '/docs/TEST-CASES.csv', 'TC-090'],
-    ['CSV 24 test case khách hàng', '/docs/TEST-CASES-CUSTOMER.csv', 'CUS-024']
+    ['Script QA', '/js/qa/qa.js', null],
+    ['Bộ chạy 24 ca nghiệp vụ', '/js/qa/qa-runner.js', null],
+    ['Danh sách test case JS', '/js/qa/qa-cases.js', null],
+    ['CSV 90 test case', '/docs/test-cases/TEST-CASES.csv', 'TC-090'],
+    ['CSV 24 test case khách hàng', '/docs/test-cases/TEST-CASES-CUSTOMER.csv', 'CUS-024']
   ]],
   ['TH', 'Phòng thực hành và hồ sơ', [
     ['Tải phòng thực hành', '/lab.html', 'panel-katalon'],

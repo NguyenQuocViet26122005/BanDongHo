@@ -18,7 +18,7 @@ test('LAB-03 Katalon 12 script tải được; JMeter tính cấu hình, không 
   await page.goto('/lab.html#katalon');await expect(page.locator('#katalon-cases a')).toHaveCount(12);await expect(page.locator('#panel-katalon')).toContainText('Not Run');
   for(const url of await page.locator('#katalon-cases a').evaluateAll(links=>links.map(a=>a.getAttribute('href')))){const r=await request.get('/'+url);expect(r.status()).toBe(200);expect(await r.text()).toContain('WebUI.closeBrowser()');}
   await page.getByRole('tab',{name:/Apache JMeter/}).click();await page.locator('#load-users').selectOption('25');await expect(page.locator('#load-samples')).toHaveText('1000');await expect(page.locator('#jmeter-command')).toContainText('-Jusers=25');
-  const plan=await request.get('/testing/jmeter/chrono-static.jmx');expect(plan.ok()).toBe(true);expect(await plan.text()).toContain('ResponseAssertion');
+  const plan=await request.get('/tests/jmeter/chrono-static.jmx');expect(plan.ok()).toBe(true);expect(await plan.text()).toContain('ResponseAssertion');
 });
 test('LAB-04 Checklist bảo vệ lưu riêng, không sửa kết quả QA',async({page})=>{
   await page.goto('/lab.html#defense');await page.locator('#rehearsal-list input').first().check();await page.reload();await expect(page.locator('#rehearsal-list input').first()).toBeChecked();await expect(page.locator('#rehearsal-status')).toContainText('1/8');

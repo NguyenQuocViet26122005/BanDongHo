@@ -1,0 +1,616 @@
+{
+  "id": "58fc740f-401f-4399-a938-43a1c0058609",
+  "version": "2.0",
+  "name": "AUREL - kiểm thử giao diện",
+  "url": "http://127.0.0.1:5517",
+  "tests": [
+    {
+      "id": "18742bd1-b030-4fe5-a8df-2cb614ec6ffa",
+      "name": "AUREL-01 Thêm SE001 vào giỏ, badge giỏ hàng hiện 2",
+      "commands": [
+        {
+          "id": "6aceb676-797d-4d9a-bd9f-e40ff18c3dfc",
+          "comment": "",
+          "command": "open",
+          "target": "/about.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "ccfde597-6687-489b-9bd2-57b86d57b75d",
+          "comment": "",
+          "command": "executeScript",
+          "target": "['chrono-cart-v1','chrono-customer-session-v1','chrono-wishlist-v1','chrono-guest-orders-v1','chrono-last-order-v1'].forEach(function(k){localStorage.removeItem(k)}); sessionStorage.clear();",
+          "targets": [],
+          "value": "daXoa"
+        },
+        {
+          "id": "8114a10c-7267-4bbf-b452-6b7023cc988f",
+          "comment": "",
+          "command": "open",
+          "target": "/product.html?id=p1",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "b69937f6-55a5-4b25-9817-c2d85cb34b07",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"qty-input\"]",
+          "targets": [],
+          "value": "2"
+        },
+        {
+          "id": "a316c11e-ee70-4727-a6dc-36aaecc02e83",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"add-to-cart-btn\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1ee5a1e6-133a-4ae7-94cf-222de702e296",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"product-feedback\"]",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "8e071efd-edd2-4f8d-ba7a-9d2a01bb59ac",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"header-cart-count\"]",
+          "targets": [],
+          "value": "2"
+        },
+        {
+          "id": "8c137560-4273-459d-8a6b-796cb79d281e",
+          "comment": "",
+          "command": "open",
+          "target": "/cart.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "e7ba5d77-fcd1-4784-beee-f0e2f00fcc41",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"cart-item-p1\"]",
+          "targets": [],
+          "value": "5000"
+        }
+      ]
+    },
+    {
+      "id": "a56f147c-2b24-4404-bc27-d682655ee847",
+      "name": "AUREL-02 Số lượng 0 và -1 bị từ chối, giỏ vẫn rỗng",
+      "commands": [
+        {
+          "id": "d231d1b0-3a9c-4601-95a7-c23fbd9b8afd",
+          "comment": "",
+          "command": "open",
+          "target": "/about.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "e0ea2fdf-7828-4f99-98a8-5127cd801ce4",
+          "comment": "",
+          "command": "executeScript",
+          "target": "['chrono-cart-v1','chrono-customer-session-v1','chrono-wishlist-v1','chrono-guest-orders-v1','chrono-last-order-v1'].forEach(function(k){localStorage.removeItem(k)}); sessionStorage.clear();",
+          "targets": [],
+          "value": "daXoa"
+        },
+        {
+          "id": "630c5b60-3792-48a3-9c67-723135896de4",
+          "comment": "",
+          "command": "open",
+          "target": "/product.html?id=p1",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "cdbb3ec8-7d20-4dc9-a710-775f564fecd9",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"qty-input\"]",
+          "targets": [],
+          "value": "0"
+        },
+        {
+          "id": "f77babea-e1ec-413b-a43b-5d0fa8c33bb1",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"add-to-cart-btn\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "41091d12-c969-4010-9df1-c1330de4c3c2",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"product-feedback\"]",
+          "targets": [],
+          "value": "Số lượng không hợp lệ. Vui lòng nhập số nguyên từ 1 trở lên."
+        },
+        {
+          "id": "5d53ba8b-748d-4774-9dca-304d40ada7c4",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"qty-input\"]",
+          "targets": [],
+          "value": "-1"
+        },
+        {
+          "id": "108b3d87-9c6e-48e2-ac50-a665bbd3281d",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"add-to-cart-btn\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "28304490-95c0-43af-ab75-4d283e4bb6fc",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"product-feedback\"]",
+          "targets": [],
+          "value": "Số lượng không hợp lệ. Vui lòng nhập số nguyên từ 1 trở lên."
+        },
+        {
+          "id": "0623fde6-69e3-4b0e-90c8-09dc048db262",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"header-cart-count\"]",
+          "targets": [],
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "f6a42092-82bd-480c-b5bb-95c6c82c119f",
+      "name": "AUREL-03 Thanh toán sai dữ liệu: lỗi hiện dưới từng trường",
+      "commands": [
+        {
+          "id": "85bb4c8a-5917-48c1-9434-03d990ef6f33",
+          "comment": "",
+          "command": "open",
+          "target": "/about.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "c8ae2a94-3e35-4839-aad7-21f67b685028",
+          "comment": "",
+          "command": "executeScript",
+          "target": "['chrono-cart-v1','chrono-customer-session-v1','chrono-wishlist-v1','chrono-guest-orders-v1','chrono-last-order-v1'].forEach(function(k){localStorage.removeItem(k)}); sessionStorage.clear();",
+          "targets": [],
+          "value": "daXoa"
+        },
+        {
+          "id": "d30a3085-a79f-4bfc-820d-4113ad3ef272",
+          "comment": "",
+          "command": "open",
+          "target": "/product.html?id=p6",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "8b36d0d4-e6ee-47a2-85c7-d10f8165e011",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"qty-input\"]",
+          "targets": [],
+          "value": "1"
+        },
+        {
+          "id": "20f5c984-d8ef-4dea-af10-c1571ea50531",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"add-to-cart-btn\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "710025e8-042c-4ea6-a982-8b2c2519bf49",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"product-feedback\"]",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "5759f901-2574-4b3a-a11d-fef72e9c0aed",
+          "comment": "",
+          "command": "open",
+          "target": "/checkout.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "ca376fea-664a-4538-9300-60bb368547e3",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"place-order-btn\"]",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "3f308fd7-507b-477b-8ab8-e897b50c5041",
+          "comment": "",
+          "command": "type",
+          "target": "css=#co-phone",
+          "targets": [],
+          "value": "123"
+        },
+        {
+          "id": "83a6bd1b-ec6e-45c6-a945-84243104aca2",
+          "comment": "",
+          "command": "type",
+          "target": "css=#co-email",
+          "targets": [],
+          "value": "sai"
+        },
+        {
+          "id": "ae184aae-776c-479e-8736-193dc1b2d9b1",
+          "comment": "",
+          "command": "type",
+          "target": "css=#co-address",
+          "targets": [],
+          "value": "ab"
+        },
+        {
+          "id": "280ebae4-9ef8-4e75-ab20-b2c409c732f9",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"place-order-btn\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "a3927f94-84dd-417f-96ad-5a9c70ac49ee",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=#err-name",
+          "targets": [],
+          "value": "Họ tên phải có từ 1 đến 100 ký tự."
+        },
+        {
+          "id": "96c02a1e-cc8a-4f79-bcd2-6c996e7074ee",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=#err-phone",
+          "targets": [],
+          "value": "Số điện thoại phải gồm 10 chữ số và bắt đầu bằng số 0."
+        },
+        {
+          "id": "ebd00ddb-f558-42d7-8336-f5c6581d5b46",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=#err-email",
+          "targets": [],
+          "value": "Email không đúng định dạng."
+        },
+        {
+          "id": "baebd191-194a-49d5-b1af-81e1cb0c4827",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=#err-address",
+          "targets": [],
+          "value": "Địa chỉ nhận hàng phải có từ 5 đến 300 ký tự."
+        }
+      ]
+    },
+    {
+      "id": "c8ea8400-b01a-4221-8f80-efddbb4a1318",
+      "name": "AUREL-04 Khách vãng lai đặt hàng thành công, đơn ở trạng thái Nháp",
+      "commands": [
+        {
+          "id": "ac730ada-1025-4520-9b07-c3fcc482d8ca",
+          "comment": "",
+          "command": "open",
+          "target": "/about.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "4b4a378f-c105-44e4-9914-33eb147862a5",
+          "comment": "",
+          "command": "executeScript",
+          "target": "['chrono-cart-v1','chrono-customer-session-v1','chrono-wishlist-v1','chrono-guest-orders-v1','chrono-last-order-v1'].forEach(function(k){localStorage.removeItem(k)}); sessionStorage.clear();",
+          "targets": [],
+          "value": "daXoa"
+        },
+        {
+          "id": "7b744875-bafa-4737-bf32-9c67becbdd1d",
+          "comment": "",
+          "command": "open",
+          "target": "/product.html?id=p6",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "84491460-d45e-4d3e-adc8-aeedf8089e2a",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"qty-input\"]",
+          "targets": [],
+          "value": "1"
+        },
+        {
+          "id": "5dc91e9c-f3f3-445b-af18-2f57af65bc74",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"add-to-cart-btn\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "90b70770-6947-4fbe-be0d-bc270529cca4",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"product-feedback\"]",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "a2a7982c-9178-46d4-ba11-d4f736e14863",
+          "comment": "",
+          "command": "open",
+          "target": "/checkout.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "ada6ea11-189f-44d3-a7de-af4ef6ff9ae6",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"place-order-btn\"]",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "f45c3dfb-55e3-4207-bd0a-7a35d8a0841b",
+          "comment": "",
+          "command": "type",
+          "target": "css=#co-name",
+          "targets": [],
+          "value": "Khách Selenium"
+        },
+        {
+          "id": "cf79e105-d46a-44ff-b900-e72e80ffc316",
+          "comment": "",
+          "command": "type",
+          "target": "css=#co-phone",
+          "targets": [],
+          "value": "0901112233"
+        },
+        {
+          "id": "69d6432b-3675-4067-9f34-522ce6af50d9",
+          "comment": "",
+          "command": "type",
+          "target": "css=#co-email",
+          "targets": [],
+          "value": "selenium@example.com"
+        },
+        {
+          "id": "5add74a3-662d-443d-9a18-351a7e60e28a",
+          "comment": "",
+          "command": "type",
+          "target": "css=#co-address",
+          "targets": [],
+          "value": "12 Đường Kiểm Thử, TP. Hồ Chí Minh"
+        },
+        {
+          "id": "2669a6c1-6480-40ca-b322-87a90df39a74",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"place-order-btn\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "684bc734-17f6-48f8-be48-8768e8cf8e92",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"order-success-card\"]",
+          "targets": [],
+          "value": "8000"
+        },
+        {
+          "id": "ffff3675-6338-4c32-8f10-6917e0ae4381",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"success-order-status\"]",
+          "targets": [],
+          "value": "Nháp · Chờ xác nhận"
+        },
+        {
+          "id": "50adaf46-1839-4eaf-8f5e-4d1bfabfd2b0",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"success-customer-name\"]",
+          "targets": [],
+          "value": "Khách Selenium"
+        }
+      ]
+    },
+    {
+      "id": "f457d7f5-bae9-4fa5-b138-4ddaa830dc08",
+      "name": "AUREL-05 Trang khách từ chối tài khoản admin/staff",
+      "commands": [
+        {
+          "id": "87ed501f-2556-4308-a8ac-b4c688db6145",
+          "comment": "",
+          "command": "open",
+          "target": "/about.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "f20e0b77-3bc4-440d-b3ce-c3936a2d4549",
+          "comment": "",
+          "command": "executeScript",
+          "target": "['chrono-cart-v1','chrono-customer-session-v1','chrono-wishlist-v1','chrono-guest-orders-v1','chrono-last-order-v1'].forEach(function(k){localStorage.removeItem(k)}); sessionStorage.clear();",
+          "targets": [],
+          "value": "daXoa"
+        },
+        {
+          "id": "0cb8ad52-9fdb-457d-aa8d-f6e8cc2b2147",
+          "comment": "",
+          "command": "open",
+          "target": "/login.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "64865af4-15d1-4f2d-83d4-73f606ed6254",
+          "comment": "",
+          "command": "type",
+          "target": "css=#login-email",
+          "targets": [],
+          "value": "admin"
+        },
+        {
+          "id": "d33384d5-deec-40d3-83da-a30121353191",
+          "comment": "",
+          "command": "type",
+          "target": "css=#login-password",
+          "targets": [],
+          "value": "Admin@123"
+        },
+        {
+          "id": "24d3f750-6015-45ae-afaa-d8e2de580f2f",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit-btn\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "d3e44c7e-934d-40f4-888a-664397e41762",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=#err-email",
+          "targets": [],
+          "value": "Tài khoản admin/staff dành cho trang Quản lý cửa hàng (index.html), không dùng để đăng nhập khách hàng."
+        }
+      ]
+    },
+    {
+      "id": "7da110bb-4aef-44c5-b340-ee62b8c4f321",
+      "name": "AUREL-06 Menu đổi theo kích thước màn hình",
+      "commands": [
+        {
+          "id": "caa22805-0a50-4a52-bba8-3365586247e7",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "800x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "b9e11e01-fbd9-4751-b6cb-514207c1afe6",
+          "comment": "",
+          "command": "open",
+          "target": "/home.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "8ceb035f-cf7b-4b89-8a61-abfa2690b099",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=.mobile-subnav",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "dfe70d2c-3fa7-472d-b405-7bb932efb474",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1440x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1ba76b66-36f0-48a2-970a-a25cf52c0bbd",
+          "comment": "",
+          "command": "open",
+          "target": "/home.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "be011149-a9fb-4d44-b657-07c38a3acc45",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=.desktop-nav",
+          "targets": [],
+          "value": "5000"
+        }
+      ]
+    },
+    {
+      "id": "5e7283f6-9bbf-422f-8b7f-1bdc50de0024",
+      "name": "AUREL-07 Trang quản lý chưa đăng nhập chỉ hiện form đăng nhập",
+      "commands": [
+        {
+          "id": "39c1b906-cafe-4a20-885b-84bfce0d7bf2",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1440x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "cd160f93-8984-4eb2-9ae7-8cdc0e99d3d3",
+          "comment": "",
+          "command": "open",
+          "target": "/index.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "d66233f1-7be3-4b42-926f-f01b671b125d",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=input[name=\"username\"]",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "9e02eae0-6ae5-4299-ac3b-611d3690199c",
+          "comment": "",
+          "command": "assertElementPresent",
+          "target": "css=input[name=\"password\"]",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "5fb6a83f-de53-467d-a91d-14fcaf35b3e2",
+      "name": "Tất cả ca AUREL",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "18742bd1-b030-4fe5-a8df-2cb614ec6ffa",
+        "a56f147c-2b24-4404-bc27-d682655ee847",
+        "f6a42092-82bd-480c-b5bb-95c6c82c119f",
+        "c8ea8400-b01a-4221-8f80-efddbb4a1318",
+        "f457d7f5-bae9-4fa5-b138-4ddaa830dc08",
+        "7da110bb-4aef-44c5-b340-ee62b8c4f321",
+        "5e7283f6-9bbf-422f-8b7f-1bdc50de0024"
+      ]
+    }
+  ],
+  "urls": [
+    "http://127.0.0.1:5517/"
+  ],
+  "plugins": []
+}

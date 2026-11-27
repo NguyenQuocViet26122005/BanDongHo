@@ -5,7 +5,7 @@ description: Thiết kế, thực thi và báo cáo kiểm thử cho website c�
 
 # Watch QA
 
-Làm việc trên web tĩnh CHRONO (`index.html`, `store.js`, `app.js`) và trang tester (`qa.html`). Dùng `docs/TEST-PLAN.md` làm nguồn yêu cầu, `docs/TEST-CASES.csv` làm ma trận ca thủ công, `docs/TEST-SUMMARY.md` làm nhật ký kết quả. Đọc tài liệu cần thiết theo yêu cầu cụ thể; không tải toàn bộ hồ sơ nếu không cần.
+Làm việc trên web tĩnh CHRONO (`index.html`, `store.js`, `app.js`) và trang tester (`qa.html`). Dùng `docs/planning/TEST-PLAN.md` làm nguồn yêu cầu, `docs/test-cases/TEST-CASES.csv` làm ma trận ca thủ công, `docs/reports/TEST-SUMMARY.md` làm nhật ký kết quả. Đọc tài liệu cần thiết theo yêu cầu cụ thể; không tải toàn bộ hồ sơ nếu không cần.
 
 ## Thiết kế test
 
@@ -20,10 +20,10 @@ Gắn mỗi ca với FR/NFR, tiền điều kiện, dữ liệu, bước, mong �
 
 ## Công cụ bắt buộc cho đồ án
 
-- Katalon: đọc `docs/KATALON.md`, dùng 12 script trong `testing/katalon/`. Chỉ ghi Pass sau khi chạy thực tế trong Studio và có report/ảnh/log.
-- JMeter: đọc `docs/JMETER.md`, dùng `testing/jmeter/chrono-static.jmx`. Phạm vi là HTTP tài nguyên tĩnh; không kết luận về đăng nhập/đơn hàng/localStorage từ JMeter.
+- Katalon: đọc `docs/tools/KATALON.md`, dùng 12 script trong `tests/katalon/`. Chỉ ghi Pass sau khi chạy thực tế trong Studio và có report/ảnh/log.
+- JMeter: đọc `docs/tools/JMETER.md`, dùng `tests/jmeter/chrono-static.jmx`. Phạm vi là HTTP tài nguyên tĩnh; không kết luận về đăng nhập/đơn hàng/localStorage từ JMeter.
 - Nạp demo là thao tác thay dữ liệu sau xác nhận trong Báo cáo; xuất JSON trước, giữ dữ liệu sổ QA. Không tự nạp demo khi đang kiểm tra ca có tiền điều kiện bộ gốc.
 
 ## Bàn giao
 
-Cập nhật `docs/TEST-SUMMARY.md` theo kết quả thật, liên kết bằng chứng và phần chưa chạy. Khi chuẩn bị bảo vệ, dùng `docs/DEFENSE.md` để diễn tập, đồng thời nêu nguồn web AI hỗ trợ theo `docs/AI-PROVENANCE.md`. Không tự đặt ra yêu cầu bắt buộc của giảng viên nếu chưa có đề cương môn học.
+Cập nhật `docs/reports/TEST-SUMMARY.md` theo kết quả thật, liên kết bằng chứng và phần chưa chạy. Khi chuẩn bị bảo vệ, dùng `docs/guides/DEFENSE.md` để diễn tập, đồng thời nêu nguồn web AI hỗ trợ theo `docs/ai/AI-PROVENANCE.md`. Không tự đặt ra yêu cầu bắt buộc của giảng viên nếu chưa có đề cương môn học.

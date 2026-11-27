@@ -1,4 +1,4 @@
-/* Sinh testing/selenium-ide/aurel-ui.side (dự án Selenium IDE, không cần tài khoản) và kiểm tra các bước.
+/* Sinh tests/selenium-ide/aurel-ui.side (dự án Selenium IDE, không cần tài khoản) và kiểm tra các bước.
  *   node scripts/build-selenium-ide.cjs            tạo file .side
  *   node scripts/build-selenium-ide.cjs --verify   tạo file rồi chạy thử từng bước trong Chrome bằng Playwright
  * Phần --verify chỉ chứng minh các bước/selector/giá trị mong đợi đúng với website; không thay cho việc chạy trong Selenium IDE. */
@@ -79,7 +79,7 @@ const project = {
 };
 project.suites.push({ id: uid(), name: 'Tất cả ca AUREL', persistSession: false, parallel: false, timeout: 300, tests: project.tests.map(t => t.id) });
 
-const out = path.join(ROOT, 'testing/selenium-ide/aurel-ui.side');
+const out = path.join(ROOT, 'tests/selenium-ide/aurel-ui.side');
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(project, null, 2));
 console.log(`Đã tạo ${path.relative(process.cwd(), out)}: ${project.tests.length} test, ${project.tests.reduce((n, t) => n + t.commands.length, 0)} lệnh.`);

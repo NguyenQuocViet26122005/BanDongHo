@@ -2,7 +2,7 @@ const {test,expect}=require('@playwright/test');
 
 test('QA-09 Lỗi tải test case hiện ở đầu trang và có thể thử lại',async({page})=>{
   let failOnce=true;
-  await page.route('**/docs/TEST-CASES.csv',route=>{
+  await page.route('**/docs/test-cases/TEST-CASES.csv',route=>{
     if(failOnce){failOnce=false;return route.abort();}
     return route.continue();
   });

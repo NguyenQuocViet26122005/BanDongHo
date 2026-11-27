@@ -6,7 +6,7 @@ test('PORT-01 Hồ sơ trình bày nguồn, 8 câu hỏi và dẫn vào trang QA
   await expect(page.locator('.question')).toHaveCount(8);
   await expect(page.locator('#source')).toContainText('AI hỗ trợ tạo');
   await expect(page.locator('#results')).toContainText('Not Run');
-  const provenance=await page.request.get('/docs/AI-PROVENANCE.md');expect(provenance.ok()).toBe(true);
+  const provenance=await page.request.get('/docs/ai/AI-PROVENANCE.md');expect(provenance.ok()).toBe(true);
   const skill=await page.request.get('/skills/watch-qa/SKILL.md');expect(skill.ok()).toBe(true);
   await info.attach('desktop-portfolio',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
   await page.getByRole('link',{name:'Mở trang thực thi kiểm thử'}).click();

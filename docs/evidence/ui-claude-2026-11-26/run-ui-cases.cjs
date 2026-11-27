@@ -370,7 +370,7 @@ impl['UI-022'] = async (p, o) => {
 };
 
 impl['UI-023'] = async (p, o) => {
-  const paths = ['/package.json', '/package-lock.json', '/tests/store.test.js', '/scripts/test-server.cjs', '/node_modules/.bin/playwright', '/.gitignore', '/../package.json', '/%2e%2e/package.json', '/docs/../package.json', '/assets/../package.json', '/docs/%2e%2e/%2e%2e/Windows/win.ini'];
+  const paths = ['/package.json', '/package-lock.json', '/tests/unit/store.test.js', '/tests/e2e/chrono.spec.js', '/playwright.config.js', '/scripts/test-server.cjs', '/node_modules/.bin/playwright', '/.gitignore', '/../package.json', '/%2e%2e/package.json', '/docs/../package.json', '/assets/../package.json', '/docs/%2e%2e/%2e%2e/Windows/win.ini'];
   const get = pth => new Promise(res => { http.get({ host: '127.0.0.1', port: PORT, path: pth }, r => { r.resume(); res(r.statusCode); }).on('error', () => res(0)); });
   const bad = [];
   for (const pth of paths) { const s = await get(pth); if (s === 200) bad.push(`${pth} → 200`); else o.push(`✔ ${pth} → ${s}`); }
@@ -459,7 +459,7 @@ const SHARED_ENV = new Set(['UI-001', 'UI-003', 'UI-008', 'UI-013', 'UI-015', 'U
   const fmt = iso => new Date(iso).toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh', dateStyle: 'short', timeStyle: 'medium' });
   const esc = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
   let md = `# Lịch sử kiểm thử giao diện, truy cập, tương thích, bảo mật cơ bản và khả năng sử dụng (UI-001…027)\n\n`;
-  md += `**Người thực thi:** Claude (AI) điều khiển trình duyệt tự động. **Không phải thao tác tay của sinh viên.** Mô tả ca: [TEST-CASES-UI.csv](../../TEST-CASES-UI.csv). Mỗi lần chạy được cộng dồn; Fail thật được giữ nguyên trong lịch sử, không xóa khi đã sửa.\n\n## Các lần chạy\n\n| Lần | Thời điểm | Pass | Fail | Blocked | Trình duyệt |\n|---|---|---|---|---|---|\n`;
+  md += `**Người thực thi:** Claude (AI) điều khiển trình duyệt tự động. **Không phải thao tác tay của sinh viên.** Mô tả ca: [TEST-CASES-UI.csv](../../test-cases/TEST-CASES-UI.csv). Mỗi lần chạy được cộng dồn; Fail thật được giữ nguyên trong lịch sử, không xóa khi đã sửa.\n\n## Các lần chạy\n\n| Lần | Thời điểm | Pass | Fail | Blocked | Trình duyệt |\n|---|---|---|---|---|---|\n`;
   for (const r of history.runs) md += `| ${r.runId} | ${fmt(r.startedAt)} | ${cnt(r, 'Pass')} | ${cnt(r, 'Fail')} | ${cnt(r, 'Blocked')} | ${r.env.browser} |\n`;
   const latest = history.runs[history.runs.length - 1];
   md += `\n## Chi tiết lần mới nhất (${latest.runId})\n\n| Ca | Loại | Mục tiêu | Trạng thái | Kết quả thực tế | Bằng chứng |\n|---|---|---|---|---|---|\n`;
@@ -477,7 +477,7 @@ const SHARED_ENV = new Set(['UI-001', 'UI-003', 'UI-008', 'UI-013', 'UI-015', 'U
 
   let spec = 'Test Case ID,Requirement ID,Chức năng,Mục tiêu,Tiền điều kiện,Dữ liệu,Các bước,Kết quả mong đợi,Ưu tiên,Loại\n';
   for (const m of CASES) spec += [m.id, ({ 'Giao diện': 'UI-VISUAL', 'Responsive': 'UI-RESP', 'Khả năng truy cập': 'UI-A11Y', 'Tương thích': 'UI-COMPAT', 'Bảo mật cơ bản': 'UI-SEC', 'Khả năng sử dụng': 'UI-USAB' })[m.type], m.func, m.goal, 'Chạy máy chủ local npm start', '13 trang khách; dữ liệu mặc định', m.steps, m.expected, m.priority, m.type].map(q).join(',') + '\n';
-  fs.writeFileSync(path.join(ROOT, 'docs/TEST-CASES-UI.csv'), '\uFEFF' + spec);
+  fs.writeFileSync(path.join(ROOT, 'docs/test-cases/TEST-CASES-UI.csv'), '\uFEFF' + spec);
 
   const lastRun = history.runs[history.runs.length - 1];
   console.log(`\n${runId}: ${cnt(lastRun, 'Pass')} Pass / ${cnt(lastRun, 'Fail')} Fail / ${cnt(lastRun, 'Blocked')} Blocked trên ${results.length} ca`);

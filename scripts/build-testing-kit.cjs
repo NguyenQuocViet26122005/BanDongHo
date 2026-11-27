@@ -1,6 +1,6 @@
 /* Sinh script thực hành từ mẫu được quản lý cùng mã nguồn. Không chạy Katalon. */
 const fs=require('node:fs'),path=require('node:path');
-const root=path.resolve(__dirname,'..'),dir=path.join(root,'testing','katalon');fs.mkdirSync(dir,{recursive:true});
+const root=path.resolve(__dirname,'..'),dir=path.join(root,'tests','katalon');fs.mkdirSync(dir,{recursive:true});
 const setup=`import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.testobject.SelectorMethod

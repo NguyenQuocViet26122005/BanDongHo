@@ -139,7 +139,7 @@ test('E2E-17 | FR-01/12 Phiên nhân viên kết thúc khi nhận thay đổi kh
 
 test('E2E-18 | FR-07 Hai tab xác nhận cạnh tranh chiếc cuối',async({page,context})=>{
   // Thiết lập dữ liệu riêng; thao tác xác nhận vẫn đi qua nút UI của ứng dụng.
-  const S=require('../../store.js'),data=S.seed();data.products[0].stock=1;
+  const S=require('../../js/core/store.js'),data=S.seed();data.products[0].stock=1;
   const first=S.order(data,'u1','c1',[{productId:'p1',quantity:1}]);const second=S.order(data,'u2','c1',[{productId:'p1',quantity:1}]);
   await page.evaluate(d=>localStorage.setItem('chrono-watch-v1',JSON.stringify(d)),data);await page.reload();await login(page);await nav(page,'Đơn hàng');
   const other=await context.newPage();

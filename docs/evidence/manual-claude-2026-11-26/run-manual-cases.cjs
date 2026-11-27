@@ -1,4 +1,4 @@
-/* Thực thi 24 ca khách hàng (docs/TEST-CASES-CUSTOMER.csv) trên Chrome thật theo đúng các bước của ca.
+/* Thực thi 24 ca khách hàng (docs/test-cases/TEST-CASES-CUSTOMER.csv) trên Chrome thật theo đúng các bước của ca.
  * Người thực thi: Claude (AI) điều khiển trình duyệt — KHÔNG phải thao tác tay của sinh viên.
  * Mỗi lần chạy được CỘNG DỒN vào history.json và sinh lại LICH-SU-KIEM-THU.md.
  * Chạy: node docs/evidence/manual-claude-2026-11-26/run-manual-cases.cjs   (từ thư mục dự án) */
@@ -28,7 +28,7 @@ function parseCsv(s) {
   if (f || r.length) { r.push(f); rows.push(r); }
   return rows;
 }
-const csv = parseCsv(fs.readFileSync(path.join(ROOT, 'docs/TEST-CASES-CUSTOMER.csv'), 'utf8')).slice(1).filter(r => r[0]);
+const csv = parseCsv(fs.readFileSync(path.join(ROOT, 'docs/test-cases/TEST-CASES-CUSTOMER.csv'), 'utf8')).slice(1).filter(r => r[0]);
 const CASES = Object.fromEntries(csv.map(r => [r[0], { id: r[0], func: r[2], goal: r[3], expected: r[7], priority: r[8], type: r[9] }]));
 
 /* ---- tiện ích ---- */
@@ -454,7 +454,7 @@ const SHARED = new Set(['CUS-016', 'CUS-017', 'CUS-018']); // chung một phiên
   const fmt = iso => new Date(iso).toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh', dateStyle: 'short', timeStyle: 'medium' });
   const esc = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
   let md = `# Lịch sử thực thi ca kiểm thử khách hàng (CUS-001…024)\n\n`;
-  md += `**Người thực thi:** Claude (AI) điều khiển Chrome tự động, thao tác theo đúng các bước trong [TEST-CASES-CUSTOMER.csv](../../TEST-CASES-CUSTOMER.csv). **Không phải thao tác tay của sinh viên** — sinh viên nên tự chạy lại các ca khi cần ghi vào sổ QA của mình (\`qa.html\`).\n\n`;
+  md += `**Người thực thi:** Claude (AI) điều khiển Chrome tự động, thao tác theo đúng các bước trong [TEST-CASES-CUSTOMER.csv](../../test-cases/TEST-CASES-CUSTOMER.csv). **Không phải thao tác tay của sinh viên** — sinh viên nên tự chạy lại các ca khi cần ghi vào sổ QA của mình (\`qa.html\`).\n\n`;
   md += `## Các lần chạy\n\n| Lần | Thời điểm | Pass | Fail | Trình duyệt | Máy |\n|---|---|---|---|---|---|\n`;
   for (const r of history.runs) { const p2 = r.results.filter(x => x.status === 'Pass').length; md += `| ${r.runId} | ${fmt(r.startedAt)} | ${p2} | ${r.results.length - p2} | ${r.env.browser} | ${r.env.os} |\n`; }
   const latest = history.runs[history.runs.length - 1];
